@@ -10,6 +10,23 @@ loadProducts();
 const showProducts = (products) => {
   const allProducts = products.map((pd) => pd);
   for (const product of allProducts) {
+
+    const rateCount = product.rating.rate;
+    let star = ''
+    let count = 0;
+    for (let i = 0; i < 5; i++) {
+      if (Math.floor(rateCount) > i) {
+        star += ('<i class="fas fa-star"></i>')
+      } else if ((rateCount + '').includes('.') && count == 0) {
+        star += ('<i class="fas fa-star-half-alt"></i>')
+        count++
+      } else {
+        star += ('<i class="far fa-star"></i>')
+      }
+    }
+
+
+
     const image = product.image;
     const div = document.createElement("div");
     div.classList.add("product");
@@ -19,7 +36,7 @@ const showProducts = (products) => {
       </div>
       <h3>${product.title.slice(0,14)}</h3>
       <p class="text-secondary">Category: ${product.category}</p>
-      <p>Raiting: <span style="color: tomato"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></span>(${product.rating.rate})</p>
+      <p>Raiting: <span style="color: tomato">${star}</span>(${product.rating.rate})</p>
       <p class="text-dark">Rated By: <span style="color: red">${product.rating.count}</span></p>
       <h2>Price: $ ${product.price}</h2>
       <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-warning mx-1">add to cart</button>
