@@ -10,7 +10,6 @@ loadProducts();
 const showProducts = (products) => {
   const allProducts = products.map((pd) => pd);
   for (const product of allProducts) {
-
     const rateCount = product.rating.rate;
     let star = ''
     let count = 0;
@@ -24,9 +23,6 @@ const showProducts = (products) => {
         star += ('<i class="far fa-star"></i>')
       }
     }
-
-
-
     const image = product.image;
     const div = document.createElement("div");
     div.classList.add("product");
